@@ -62,7 +62,9 @@ function ESX.ShowNotification(message, notifyType, length)
         return exports["esx_notify"]:Notify(notifyType, length, message)
     end
 
-    print("[^1ERROR^7] ^5ESX Notify^7 is Missing!")
+    AddTextEntry("esxNotification", message)
+    BeginTextCommandThefeedPost("esxNotification")
+    EndTextCommandThefeedPostTicker(false, true)
 end
 
 function ESX.TextUI(message, notifyType)
