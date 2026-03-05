@@ -88,25 +88,29 @@ Config.RemoveHudComponents = {
     [22] = false, --HUD_WEAPONS
 }
 
-Config.SpawnVehMaxUpgrades = true -- รถที่แอดมินสปอนจะอัปเกรดเต็ม
-Config.CustomAIPlates = "........" -- รูปแบบป้ายทะเบียนสำหรับรถ AI
+Config.SpawnVehMaxUpgrades = true -- true = รถที่แอดมินสปอนด้วยคำสั่งจะถูกอัปเกรดเต็มทันที
+Config.CustomAIPlates = "........" -- รูปแบบป้ายทะเบียนรถ AI (ดูคำอธิบาย Pattern ด้านล่าง)
 
+-- ตั้งค่าระบบส่ง Log ไป Discord (ใช้กับ ESX.DiscordLog / ESX.DiscordLogFields)
 Config.DiscordLogs = {
+    -- กลุ่ม Webhook: เลือกช่องปลายทางของ log ตามชื่อที่เรียกใช้ในโค้ด
     Webhooks = {
-        default = "", -- ใส่ URL webhook หลักของคุณที่นี่
-        UserActions = "", -- (ไม่บังคับ) webhook แยกสำหรับบันทึกการใช้คำสั่ง
+        default = "", -- webhook หลัก: ใช้เมื่อไม่พบชื่อหมวด log ที่ระบุ
+        UserActions = "", -- webhook สำหรับ log การใช้คำสั่ง/การกระทำของผู้เล่น (เช่น /setjob, /car)
     },
+
+    -- กลุ่มสีของ Embed (เลขฐานสิบของสี Discord) เรียกใช้ตามชื่อสี
     Colors = {
-        default = 14423100,
-        blue = 255,
-        red = 16711680,
-        green = 65280,
-        white = 16777215,
-        black = 0,
-        orange = 16744192,
-        yellow = 16776960,
-        pink = 16761035,
-        lightgreen = 65309,
+        default = 14423100, -- สีเริ่มต้นเมื่อไม่ระบุสีหรือไม่พบชื่อสี
+        blue = 255, -- สีน้ำเงิน
+        red = 16711680, -- สีแดง
+        green = 65280, -- สีเขียว
+        white = 16777215, -- สีขาว
+        black = 0, -- สีดำ
+        orange = 16744192, -- สีส้ม
+        yellow = 16776960, -- สีเหลือง
+        pink = 16761035, -- สีชมพู
+        lightgreen = 65309, -- สีเขียวอ่อน
     },
 }
 -- รูปแบบสตริง
