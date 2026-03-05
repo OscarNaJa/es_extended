@@ -88,13 +88,32 @@ Config.RemoveHudComponents = {
     [22] = false, --HUD_WEAPONS
 }
 
-Config.SpawnVehMaxUpgrades = true -- admin vehicles spawn with max vehicle settings
-Config.CustomAIPlates = "........" -- Custom plates for AI vehicles
--- Pattern string format
---1 will lead to a random number from 0-9.
---A will lead to a random letter from A-Z.
--- . will lead to a random letter or number, with a 50% probability of being either.
---^1 will lead to a literal 1 being emitted.
---^A will lead to a literal A being emitted.
---Any other character will lead to said character being emitted.
--- A string shorter than 8 characters will be padded on the right.
+Config.SpawnVehMaxUpgrades = true -- รถที่แอดมินสปอนจะอัปเกรดเต็ม
+Config.CustomAIPlates = "........" -- รูปแบบป้ายทะเบียนสำหรับรถ AI
+
+Config.DiscordLogs = {
+    Webhooks = {
+        default = "", -- ใส่ URL webhook หลักของคุณที่นี่
+        UserActions = "", -- (ไม่บังคับ) webhook แยกสำหรับบันทึกการใช้คำสั่ง
+    },
+    Colors = {
+        default = 14423100,
+        blue = 255,
+        red = 16711680,
+        green = 65280,
+        white = 16777215,
+        black = 0,
+        orange = 16744192,
+        yellow = 16776960,
+        pink = 16761035,
+        lightgreen = 65309,
+    },
+}
+-- รูปแบบสตริง
+-- 1 = สุ่มตัวเลข 0-9
+-- A = สุ่มตัวอักษร A-Z
+-- . = สุ่มตัวอักษรหรือตัวเลข (โอกาสอย่างละครึ่ง)
+-- ^1 = ใส่เลข 1 แบบค่าคงที่
+-- ^A = ใส่ตัวอักษร A แบบค่าคงที่
+-- อักขระอื่น ๆ จะถูกใส่ตามตัวที่กำหนด
+-- หากสตริงสั้นกว่า 8 ตัวอักษร ระบบจะเติมด้านขวา

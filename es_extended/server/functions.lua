@@ -116,7 +116,8 @@ function ESX.RegisterCommand(name, group, cb, allowConsole, suggestion)
                                     error = TranslateCap("commanderror_invaliditem")
                                 end
                             elseif v.type == "weapon" then
-                                if ESX.GetWeapon(args[k]) then
+                                local isValidWeapon = pcall(ESX.GetWeapon, args[k])
+                                if isValidWeapon then
                                     newArgs[v.name] = string.upper(args[k])
                                 else
                                     error = TranslateCap("commanderror_invalidweapon")
@@ -366,11 +367,19 @@ function ESX.GetVehicleType(model, player, cb)
 end
 
 function ESX.DiscordLog(name, title, color, message)
-    local webHook = Config.DiscordLogs.Webhooks[name] or Config.DiscordLogs.Webhooks.default
+    local discordLogs = Config.DiscordLogs or {}
+    local webhooks = discordLogs.Webhooks or {}
+    local colors = discordLogs.Colors or {}
+    local webHook = webhooks[name] or webhooks.default
+
+    if not webHook or webHook == "" then
+        return
+    end
+
     local embedData = {
         {
             ["title"] = title,
-            ["color"] = Config.DiscordLogs.Colors[color] or Config.DiscordLogs.Colors.default,
+            ["color"] = colors[color] or colors.default,
             ["footer"] = {
                 ["text"] = "| ESX Logs | " .. os.date(),
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/944789399852417096/1020099828266586193/blanc-800x800.png",
@@ -397,11 +406,19 @@ function ESX.DiscordLog(name, title, color, message)
 end
 
 function ESX.DiscordLogFields(name, title, color, fields)
-    local webHook = Config.DiscordLogs.Webhooks[name] or Config.DiscordLogs.Webhooks.default
+    local discordLogs = Config.DiscordLogs or {}
+    local webhooks = discordLogs.Webhooks or {}
+    local colors = discordLogs.Colors or {}
+    local webHook = webhooks[name] or webhooks.default
+
+    if not webHook or webHook == "" then
+        return
+    end
+
     local embedData = {
         {
             ["title"] = title,
-            ["color"] = Config.DiscordLogs.Colors[color] or Config.DiscordLogs.Colors.default,
+            ["color"] = colors[color] or colors.default,
             ["footer"] = {
                 ["text"] = "| ESX Logs | " .. os.date(),
                 ["icon_url"] = "https://cdn.discordapp.com/attachments/944789399852417096/1020099828266586193/blanc-800x800.png",
